@@ -14,11 +14,11 @@ class App extends React.Component<any, any>{
 
   componentDidMount() {
     fetch(
-      "https://db.ygoprodeck.com/api/v7/cardinfo.php")
+      "https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Time Wizard")
       .then((res) => res.json())
       .then((json) =>{
         this.setState({
-          cards: json,
+          cards: json.data['0'],
           DataIsLoaded: true
         });
       })
@@ -30,9 +30,12 @@ class App extends React.Component<any, any>{
       <div className='container'>
         <main className='main'>
           <div className="cardLayout">
-              <YugiohCard name='Blue Eyes Ultimate Dragon' img='https://ms.yugipedia.com//8/87/BlueEyesUltimateDragon-LDS2-EN-UR-1E.png' atk='4500' def='3800'/>
-              <YugiohCard name='Blue Eyes Ultimate Dragon' img='https://ms.yugipedia.com//8/87/BlueEyesUltimateDragon-LDS2-EN-UR-1E.png' atk='4500' def='3800'/>
-              <YugiohCard name='Blue Eyes Ultimate Dragon' img='https://ms.yugipedia.com//8/87/BlueEyesUltimateDragon-LDS2-EN-UR-1E.png' atk='4500' def='3800'/>
+              <YugiohCard 
+                name={cards.name} 
+                img='https://ms.yugipedia.com//8/87/BlueEyesUltimateDragon-LDS2-EN-UR-1E.png' 
+                atk={cards.atk} 
+                def={cards.def}
+              />
           </div>
         </main>
       </div>
